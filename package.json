@@ -1,0 +1,27 @@
+{
+  "name": "@mhy/config",
+  "version": "0.0.9",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "mhy-build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wintercounter/mhy-config.git"
+  },
+  "author": "Victor Vincent",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wintercounter/mhy-config/issues"
+  },
+  "homepage": "https://github.com/wintercounter/mhy-config#readme",
+  "dependencies": {
+    "@mhy/process": "^1.0.1",
+    "fast-glob": "^2.2.2"
+  },
+  "devDependencies": {
+    "@mhy/build": "0.0.5"
+  }
+}
