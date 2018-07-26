@@ -2,8 +2,8 @@ import path from 'path'
 
 import { load, moduleHome } from '../'
 
-export default load('jest', {
-	setupTestFrameworkScriptFile: path.resolve(moduleHome, 'config/jest/setup.js'),
+module.exports = load('jest', {
+	setupTestFrameworkScriptFile: path.resolve(moduleHome, 'jest/setup.js'),
 	roots: [
 		path.resolve(process.cwd(), 'src')
 	],

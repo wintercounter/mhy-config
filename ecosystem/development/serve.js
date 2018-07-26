@@ -1,5 +1,5 @@
 import path from 'path'
-import Process from '@mhy/process'
+import Process from '@mhy/process/dist'
 
 const { moduleHome } = require('../../index')
 

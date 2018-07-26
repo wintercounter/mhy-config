@@ -1,10 +1,11 @@
 {
   "name": "@mhy/config",
-  "version": "0.0.9",
+  "version": "0.0.18",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "pub": "npm publish --access=public",
     "prepublish": "mhy-build"
   },
   "repository": {
@@ -18,7 +19,7 @@
   },
   "homepage": "https://github.com/wintercounter/mhy-config#readme",
   "dependencies": {
-    "@mhy/process": "^1.0.1",
+    "@mhy/process": "0.0.2",
     "fast-glob": "^2.2.2"
   },
   "devDependencies": {

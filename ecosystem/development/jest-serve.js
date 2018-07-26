@@ -1,5 +1,5 @@
 import path from 'path'
-import Process from '@mhy/process'
+import Process from '@mhy/process/dist'
 
 import { moduleHome } from '../..'
 
@@ -25,21 +25,23 @@ const getJestServeCLICmd = (flags) => [
 	'"node_modules"'
 ]
 
-const commandToUse = () => process.MHY_ENV === 'ui'
-	? getJestServeCLICmd
-	: getJestCLICmd
-
 class JestServe extends Process {
+	get commandToUse() {
+		return process.MHY_ENV === 'ui'
+			? getJestServeCLICmd
+			: getJestCLICmd
+	}
+
 	constructor(defaultAction = 'start') {
 		super()
 		this.run(defaultAction)
 	}
 
-	onStart = ({name}, {flags = []}) => this.spawn(name, commandToUse()([...flags, onlyChangedFlag]))
+	onStart = ({name}, {flags = []}) => this.spawn(name, this.commandToUse(flags))
 
-	onWatch = ({name}, {flags = []}) => this.spawn(name, commandToUse()([...flags, watchFlag]))
+	onWatch = ({name}, {flags = []}) => this.spawn(name, this.commandToUse([...flags, watchFlag]))
 
-	onWatchAll = ({name}, {flags = []}) => this.spawn(name, commandToUse()([...flags, watchAllFlag]))
+	onWatchAll = ({name}, {flags = []}) => this.spawn(name, this.commandToUse([...flags, watchAllFlag]))
 
 	onRunAll = async () => {
 		await this.kill('start')
