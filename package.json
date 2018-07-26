@@ -1,6 +1,6 @@
 {
   "name": "@mhy/config",
-  "version": "0.0.22",
+  "version": "0.0.25",
   "description": "",
   "main": "index.js",
   "scripts": {
