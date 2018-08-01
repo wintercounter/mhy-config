@@ -13,7 +13,7 @@ module.exports.default = (rules) => [
 		enforce: 'pre',
 		test: /\.js$/,
 		loader: require.resolve('eslint-loader'),
-		exclude: /node_modules/,
+		include: /src/,
 		options: { configFile }
 	}
 ]

@@ -20,7 +20,12 @@ module.exports.default = rules => [
 			{
 				loader: require.resolve('sass-loader'),
 				options: {
-					sourceMap: true
+					sourceMap: true,
+					includePaths: [
+						'node_modules',
+						'bower_components',
+						'src'
+					]
 				}
 			},
 			{
