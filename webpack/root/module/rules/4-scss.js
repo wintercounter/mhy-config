@@ -18,6 +18,16 @@ module.exports.default = rules => [
 				}
 			},
 			{
+				loader: require.resolve('postcss-loader'),
+				options: {
+					sourceMap: true,
+					plugins: [
+						require('postcss-import')(),
+						require('postcss-cssnext')()
+					]
+				}
+			},
+			{
 				loader: require.resolve('sass-loader'),
 				options: {
 					sourceMap: true,
@@ -25,16 +35,6 @@ module.exports.default = rules => [
 						'node_modules',
 						'bower_components',
 						'src'
-					]
-				}
-			},
-			{
-				loader: require.resolve('postcss-loader'),
-				options: {
-					sourceMap: true,
-					plugins: [
-						require('postcss-import')(),
-						require('postcss-cssnext')()
 					]
 				}
 			}
