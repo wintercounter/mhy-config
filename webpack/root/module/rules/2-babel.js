@@ -7,7 +7,7 @@ module.exports.default = (rules) => [
 		test: /\.jsx?$/,
 		include: Array.from(new Set([ // Make items unique
 			path.join(moduleHome, 'src'),
-			path.join(process.cwd(), 'src'),
+			path.join(process.cwd(), 'src')
 		])),
 		exclude: /node_modules/,
 		use: [
