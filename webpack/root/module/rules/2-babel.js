@@ -24,7 +24,8 @@ module.exports.default = (rules) => [
 						}],
 						require.resolve('babel-plugin-syntax-async-functions'),
 						require.resolve('@babel/plugin-transform-regenerator'),
-						require.resolve('babel-plugin-transform-function-bind')
+						require.resolve('babel-plugin-transform-function-bind'),
+						require.resolve('@babel/plugin-proposal-export-default-from')
 					],
 					presets: [
 						[ require.resolve('@babel/preset-env'), {

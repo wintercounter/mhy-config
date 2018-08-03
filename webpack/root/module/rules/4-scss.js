@@ -39,7 +39,7 @@ const getUse = (isModules = true) => [
 module.exports.default = rules => [
 	...rules,
 	{
-		test: /(?!global)......\.s?css$/,
+		test: /^((?!global).)*.s?css$/,
 		use: getUse()
 	},
 	{
