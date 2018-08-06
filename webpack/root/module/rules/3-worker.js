@@ -5,10 +5,10 @@ module.exports.default = rules => [
 		exclude: /node_modules/,
 		use: [
 			{
-				loader: 'babel-loader'
+				loader: require.resolve('babel-loader')
 			},
 			{
-				loader: 'worker-loader'
+				loader: require.resolve('worker-loader')
 			}
 		]
 	}

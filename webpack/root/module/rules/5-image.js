@@ -5,7 +5,7 @@ module.exports.default = rules => [
 		loaders: [
 			'file-loader?hash=sha512&digest=hex&name=[name].[hash].[ext]',
 			{
-				loader: 'image-webpack-loader',
+				loader: require.resolve('image-webpack-loader'),
 				options: {
 					bypassOnDebug: true,
 					mozjpeg: {
