@@ -5,6 +5,7 @@ module.exports.default = () => ({
 	extensions : ['.js', '.mjs', '.css', '.scss'],
 	modules: Array.from(new Set([
 		path.resolve(moduleHome, '../../../'),
-		path.resolve(process.cwd(), 'node_modules')
+		path.resolve(process.cwd(), 'node_modules'),
+		'../node_modules'
 	]))
 })
