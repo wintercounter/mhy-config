@@ -19,7 +19,7 @@ const getUse = (isModules = true) => [
 			sourceMap: true,
 			plugins: [
 				require('postcss-import')(),
-				require('postcss-cssnext')()
+				//require('postcss-cssnext')() use preset-env
 			]
 		}
 	},
