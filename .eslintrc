@@ -17,7 +17,11 @@
     "react",
     "jest"
   ],
-  "extends": ["plugin:jest/recommended"],
+  "extends": [
+    "airbnb",
+    "prettier",
+    "plugin:jest/recommended"
+  ],
   "rules": {
     "jest/no-disabled-tests": "warn",
     "jest/no-focused-tests": "error",
