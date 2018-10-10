@@ -14,7 +14,7 @@ module.exports.default = (rules) => [
 		test: /\.js$/,
 		loader: require.resolve('eslint-loader'),
 		include: /src/,
-		exclude: /node_modules/,
+		exclude: /node_modules|dist/,
 		options: { configFile }
 	}
 ]

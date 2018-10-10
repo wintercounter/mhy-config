@@ -1,7 +1,6 @@
 module.exports.default = entry => {
-	if (process.env.WEBPACK_SERVE) {
+	if (process.env.WEBPACK_DEV_SERVER) {
 		entry.vendor.push(require.resolve('webpack-dev-server-status-bar'))
-		entry.app.push(require.resolve('webpack-hot-client/client'))
 	}
-	return entry
+    return entry
 }

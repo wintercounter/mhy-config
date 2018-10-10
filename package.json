@@ -1,6 +1,6 @@
 {
   "name": "@mhy/config",
-  "version": "0.2.1",
+  "version": "0.7.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -20,9 +20,9 @@
   "homepage": "https://github.com/wintercounter/mhy-config#readme",
   "dependencies": {
     "@mhy/process": "0.0.2",
-    "fast-glob": "^2.2.2"
+    "fast-glob": "^2.2.3"
   },
   "devDependencies": {
-    "@mhy/build": "0.0.5"
+    "@mhy/build": "0.0.6"
   }
 }

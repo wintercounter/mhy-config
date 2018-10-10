@@ -1,3 +1,6 @@
+const path = require('path')
+const { moduleHome } = require('../../../../')
+
 const getUse = (isModules = true) => [
 	{
 		loader: require.resolve('style-loader')
@@ -27,11 +30,12 @@ const getUse = (isModules = true) => [
 		loader: require.resolve('sass-loader'),
 		options: {
 			sourceMap: true,
-			includePaths: [
-				'node_modules',
-				'bower_components',
-				'src'
-			]
+            includePaths: Array.from(new Set([
+                path.resolve(moduleHome, '../../../'),
+                path.resolve(process.cwd(), 'node_modules'),
+                path.resolve(process.cwd(), 'src'),
+                '../node_modules'
+            ])),
 		}
 	}
 ]

@@ -25,7 +25,7 @@ const getJestServeCLICmd = (flags) => [
 	'"node_modules"'
 ]
 
-class JestServe extends Process {
+class Jest extends Process {
 	get commandToUse() {
 		return process.MHY_ENV === 'ui'
 			? getJestServeCLICmd
@@ -96,5 +96,5 @@ class JestServe extends Process {
 	]
 }
 
-module.exports.default = () => JestServe
+module.exports.default = () => Jest
 

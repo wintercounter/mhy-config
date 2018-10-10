@@ -10,7 +10,7 @@ module.exports.default = (plugins = []) => {
 			template : indexTemplate
 		})
 	])
-	if (process.env.WEBPACK_SERVE) {
+	if (process.env.WEBPACK_DEV_SERVER) {
 		plugins.push(new HotModuleReplacementPlugin())
 	}
 	return plugins

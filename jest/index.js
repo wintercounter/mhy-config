@@ -2,16 +2,23 @@ import path from 'path'
 
 import { load, moduleHome } from '../'
 
+require('../_utils/babelrc')(__dirname)
+
 module.exports = load('jest', {
 	setupTestFrameworkScriptFile: path.resolve(moduleHome, 'jest/setup.js'),
 	roots: [
 		path.resolve(process.cwd(), 'src')
 	],
+    modulePaths:[
+        path.resolve(process.cwd(), 'src'),
+        path.resolve(process.cwd(), 'node_modules'),
+        path.resolve(moduleHome, '../../../../', './node_modules')
+    ],
 	transform: {
 		'^.+\\.jsx?$': require.resolve('./preprocess')
 	},
 	bail: true,
-	testRegex: '\\.(test|spec|integration)\\.jsx?$',
+	testRegex: '\\.?(test|tests|spec|integration)\\.jsx?$',
 	collectCoverage: false,
 	verbose: true,
 	moduleNameMapper: {
