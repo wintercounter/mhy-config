@@ -54,9 +54,10 @@ const applyJSON = (module, env, o, j) => {
 	try {
 		j = j || json[module][env] || {}
 	} catch (e) { return }
-    o = Object.assign(o, j)
+
 	for (const [k, v] of Object.entries(j)) {
 		if (v instanceof Object) {
+            o[k] = o[k] || v || {}
 			applyJSON(module, env, o[k] || {}, v)
 		}
 		else {
