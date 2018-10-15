@@ -1,3 +1,7 @@
+# WARNING!
+> This documentation is not complete. It's in progress and it's a
+BETA version. Use the tool at your own risk.
+
 # @mhy/config
 This lib is a collection of all configuration and UI panels (ecosystem)
  `@mhy` uses.
@@ -108,6 +112,12 @@ package.json file
 }
 ```
 
+### Flow
+1. Load **root** config from package dir/files.
+2. Load **env** config from package dir/files.
+3. Load **root** config from project `package.json`.
+4. Load **env** config from project `package.json`.
+
 # UI
 UIs are basically built-in ecosystem tasks. You can run all of them
 at once or separately.
@@ -130,3 +140,20 @@ mhy run jest watch
 - `Left/Right arrow` select action
 - `Enter` run selected action
 - `Up/Down arrow` scroll up/down in the selected panel
+
+## Disabling panels
+By default all available ecosystem panels are being loaded. You can
+manually them anytime you want.
+
+The easiest way is to do this from your project's `package.json`:
+```
+"mhy": {
+    "ui": {
+        "root": {
+            "disabled": [
+                "tsc"
+            ]
+        }
+    }
+}
+```
