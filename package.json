@@ -1,12 +1,12 @@
 {
   "name": "@mhy/config",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "pub": "npm publish --access=public",
-    "prepublish": "mhy-build"
+    "prepare": "mhy-build"
   },
   "repository": {
     "type": "git",
