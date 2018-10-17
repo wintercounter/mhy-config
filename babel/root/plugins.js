@@ -19,6 +19,7 @@ export default (defaults = []) => [
 	require.resolve('@babel/plugin-transform-regenerator'),
 	require.resolve('babel-plugin-transform-function-bind'),
 	require.resolve('@babel/plugin-proposal-export-default-from'),
+    require.resolve('@babel/plugin-proposal-export-namespace-from'),
 	[require.resolve('babel-plugin-module-resolver'), {
         "root": [],
         "alias": aliases.reduce(function (acc, [k]) {
