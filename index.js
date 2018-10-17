@@ -56,7 +56,7 @@ const applyJSON = (module, env, o, j) => {
 	} catch (e) { return }
 
 	for (const [k, v] of Object.entries(j)) {
-		if (v instanceof Object) {
+		if (!Array.isArray(v) && v instanceof Object) {
             o[k] = o[k] || v || {}
 			applyJSON(module, env, o[k] || {}, v)
 		}
