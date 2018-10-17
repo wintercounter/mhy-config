@@ -18,6 +18,7 @@ module.exports.default = () => ({
         '@layouts': path.resolve(process.cwd(), 'src/layouts/'),
         '@overlays': path.resolve(process.cwd(), 'src/overlays/'),
         '@pages': path.resolve(process.cwd(), 'src/pages/'),
+        '@services': path.resolve(process.cwd(), 'src/services/'),
         '@validators': path.resolve(process.cwd(), 'src/validators/')
     }
 })
