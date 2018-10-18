@@ -10,11 +10,9 @@ module.exports.default = (rules) => [
 			path.join(process.cwd(), 'src')
 		])),
 		exclude: /node_modules/,
-		use: [
-			{
-				loader: require.resolve('babel-loader'),
-				options: require('../../../../babel')
-			}
-		]
+		use: [{
+            loader: require.resolve('babel-loader'),
+            options: require('../../../../babel')
+        }]
 	}
 ]
