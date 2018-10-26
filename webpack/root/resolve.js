@@ -6,6 +6,7 @@ module.exports.default = () => ({
 	modules: Array.from(new Set([
 		path.resolve(moduleHome, '../../../'),
 		path.resolve(process.cwd(), 'node_modules'),
+        path.resolve(moduleHome, '../node_modules'),
 		'../node_modules'
 	])),
     alias: {

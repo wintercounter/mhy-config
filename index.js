@@ -28,7 +28,7 @@ export const load = (module, defaults = {}) => {
 const applyEntries = (module, env, o) => {
 	const entries = fg.sync([path.resolve(__dirname, module, env, '**/*')], { ignore: ['index.js'] })
 	for (const entry of entries) {
-		const segments = entry.replace(new RegExp(`.*/config/.*${module}/${env}/`), '').split('/')
+		const segments = entry.split(`${module}/${env}/`)[1].split('/')
 		let tmp = o
 		segments.forEach((v, k) => {
 			if (Array.isArray(tmp)) {}
