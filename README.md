@@ -141,11 +141,38 @@ mhy run jest watch
 - `Enter` run selected action
 - `Up/Down arrow` scroll up/down in the selected panel
 
-## Disabling panels
-By default all available ecosystem panels are being loaded. You can
-manually them anytime you want.
+## UI Panels
+By default the following panels are enabled when you simply run `mhy`:
+- `jest`
+- `storybook-start`
+- `webpack-dev-server`
+- `tsc`
 
-The easiest way is to do this from your project's `package.json`:
+Disabled by default:
+- `prettier` `webpack-dev-server` already handles it, but it can be
+useful to run it before pushing commits and such.
+
+However, you can can explicitly enable/disable panels in `package.json`
+per environment, or explicitly tell which panels to run in CLI.
+
+```
+mhy ui prettier storybook-start
+```
+
+### Enabling panels
+```
+"mhy": {
+    "ui": {
+        "root": {
+            "enabled": [
+                "prettier"
+            ]
+        }
+    }
+}
+```
+
+### Disabling panels
 ```
 "mhy": {
     "ui": {

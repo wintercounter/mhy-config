@@ -16,6 +16,8 @@ const CmdBabelCLI = [
 ]
 
 class Babel extends Process {
+    static isEnabled = true
+
 	constructor() {
 		super()
 		this.run('start')

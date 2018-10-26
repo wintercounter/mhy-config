@@ -11,6 +11,8 @@ const CmdWDSCLI = [
 ]
 
 class WDS extends Process {
+    static isEnabled = true
+
     constructor() {
         super()
         this.run('start')

@@ -27,6 +27,8 @@ CmdTscCLI.push(include[0])
 
 
 class Tsc extends Process {
+    static isEnabled = true
+
 	constructor() {
 		super()
 		this.run('start')

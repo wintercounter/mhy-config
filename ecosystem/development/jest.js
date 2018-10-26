@@ -26,6 +26,8 @@ const getJestServeCLICmd = (flags) => [
 ]
 
 class Jest extends Process {
+	static isEnabled = true
+
 	get commandToUse() {
 		return process.MHY_ENV === 'ui'
 			? getJestServeCLICmd

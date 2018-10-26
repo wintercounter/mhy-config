@@ -11,6 +11,8 @@ const CmdWebpackCLI = [
 ]
 
 class Webpack extends Process {
+    static isEnabled = true
+
 	constructor() {
 		super()
 		this.run('start')

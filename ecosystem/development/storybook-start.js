@@ -16,6 +16,8 @@ for (const [key, value] of Object.entries(start)) {
 
 
 class StorybookStart extends Process {
+    static isEnabled = true
+
     constructor() {
         super()
         this.run('start')
