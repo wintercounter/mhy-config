@@ -1,6 +1,13 @@
 const fs = require('fs')
 const path = require('path')
-const { dependencies } = require(require('resolve-global')('@mhy/mhy/package.json'))
+
+const mhyJSONPath = require('resolve-global')('@mhy/mhy/package.json')
+
+if (!fs.existsSync(mhyJSONPath)) {
+    process.exit(0)
+}
+
+const { dependencies } = require(mhyJSONPath)
 const packageJSON = require(path.resolve(__dirname, '../package.json'))
 
 packageJSON.peerDependencies = dependencies
