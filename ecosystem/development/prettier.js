@@ -7,7 +7,7 @@ const getPrettierCLICmd = (flags = [], fileName) => {
     // It's a file/path, use that
     let file = flags[flags.length]
     if (!file) {
-        flags.push(fileName || `"${path.resolve(process.cwd(), 'src/**/*.js')}"`)
+        flags.push(fileName || `"${path.resolve(process.cwd(), 'src/**/*.{js,jsx,ts,tsx}')}"`)
     }
     return [
         'node',
@@ -22,6 +22,9 @@ const getPrettierServeCLICmd = (flags) => [
     'node',
     require.resolve('chokidar-cli/index.js'),
     `"src/**/*.js"`,
+    `"src/**/*.jsx"`,
+    `"src/**/*.ts"`,
+    `"src/**/*.tsx"`,
     '-c',
     `"${getPrettierCLICmd(flags, '{path}').join(' ')}"`,
     '--initial',

@@ -5,26 +5,11 @@ const { moduleHome } = require('../../index')
 
 const CmdTscCLI = [
 	'node',
-	require.resolve('typescript/lib/tsc.js')
+	require.resolve('typescript/lib/tsc.js'),
+	'-w',
+	'--project',
+	path.resolve(process.cwd(), 'tsconfig.json')
 ]
-
-const { compilerOptions, include } = require(path.resolve(moduleHome, 'typescript/index.js'))
-
-for (const [key, value] of Object.entries(compilerOptions)) {
-	switch(typeof value) {
-		case 'boolean':
-			value && CmdTscCLI.push(`--${key}`)
-			break
-		case 'number':
-		case 'string':
-		default:
-			CmdTscCLI.push(`--${key}`)
-			CmdTscCLI.push(value)
-	}
-}
-
-CmdTscCLI.push(include[0])
-
 
 class Tsc extends Process {
     static isEnabled = true
@@ -34,7 +19,13 @@ class Tsc extends Process {
 		this.run('start')
 	}
 
-	onStart = ({name}) => this.spawn(name, CmdTscCLI)
+	onStart = ({name}) => {
+        // Just initiate tsconfig.json creation
+        require(path.resolve(moduleHome, 'typescript/index.js'))
+
+		// Ensure file is being written
+		setTimeout(() => this.spawn(name, CmdTscCLI), 200)
+    }
 
 	onRestart = async () => {
 		await this.kill('start')

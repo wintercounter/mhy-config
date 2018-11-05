@@ -1,6 +1,6 @@
 {
   "name": "@mhy/config",
-  "version": "0.12.1",
+  "version": "0.13.3",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -133,7 +133,7 @@
     "react-devtools-core": "^3.4.2",
     "react-dom": "^16.6.0",
     "react-hot-loader": "^4.3.11",
-    "react-redux": "^5.0.7",
+    "react-redux": "^5.1.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-router-prop-types": "^1.0.4",

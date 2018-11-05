@@ -9,16 +9,18 @@ module.exports = load('jest', {
 	roots: [
 		path.resolve(process.cwd(), 'src')
 	],
-    modulePaths:[
+    moduleFileExtensions: ['js', 'jsx', 'json', 'ts', 'tsx'],
+    modulePaths: [
         path.resolve(process.cwd(), 'src'),
         path.resolve(process.cwd(), 'node_modules'),
+        path.resolve(__dirname, '../../node_modules'),
         path.resolve(moduleHome, '../../../../', './node_modules')
     ],
 	transform: {
-		'^.+\\.jsx?$': require.resolve('./preprocess')
+		'^.+\\.[jt]sx?$': require.resolve('./preprocess')
 	},
 	bail: true,
-	testRegex: '\\.?(test|tests|spec|integration)\\.jsx?$',
+	testRegex: '\\.?(test|tests|spec|integration)\\.[jt]sx?$',
 	collectCoverage: false,
 	verbose: true,
 	moduleNameMapper: {

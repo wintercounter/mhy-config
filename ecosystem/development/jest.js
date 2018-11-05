@@ -18,6 +18,9 @@ const getJestServeCLICmd = (flags) => [
 	'node',
 	require.resolve('chokidar-cli/index.js'),
 	`"src/**/*.js"`,
+	`"src/**/*.jsx"`,
+	`"src/**/*.ts"`,
+	`"src/**/*.tsx"`,
 	'-c',
 	`"${getJestCLICmd(flags).join(' ')}"`,
 	'--initial',
@@ -29,6 +32,7 @@ class Jest extends Process {
 	static isEnabled = true
 
 	get commandToUse() {
+		console.log(getJestCLICmd())
 		return process.MHY_ENV === 'ui'
 			? getJestServeCLICmd
 			: getJestCLICmd

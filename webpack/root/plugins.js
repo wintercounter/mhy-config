@@ -21,9 +21,13 @@ module.exports.default = (plugins = []) => {
         return icon
     })
 
+    plugins = plugins.concat(new GenerateSW())
+
+    if (fs.existsSync(swSrc)) {
+        new InjectManifest({ swSrc })
+    }
+
 	return plugins.concat([
-	    new GenerateSW(),
-        new InjectManifest({ swSrc }),
         new WebpackPwaManifestPlugin(manifest),
 		new WebpackManifestPlugin({
 			fileName: './manifest.webpack.json',

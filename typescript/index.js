@@ -2,7 +2,7 @@ import path from 'path'
 
 import { load } from '../'
 
-module.exports = module.exports.default = load('typescript', {
+const tsconfig = module.exports = module.exports.default = load('typescript', {
 	"compilerOptions": {
 		"target": "esnext",
 		"moduleResolution": "node",
@@ -13,6 +13,9 @@ module.exports = module.exports.default = load('typescript', {
 		"esModuleInterop": true
 	},
 	"include": [
-		path.resolve(process.cwd(), 'src', '/')
+		path.resolve(process.cwd(), 'src/**/*')
 	]
 })
+
+// Generate fresh tsconfig.json on each run
+require('../_utils/tsconfig')(process.cwd(), tsconfig)
