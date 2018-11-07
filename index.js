@@ -1,6 +1,7 @@
 import fg from 'fast-glob'
 import fs from 'fs'
 import path from 'path'
+import rg from 'resolve-global'
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
@@ -12,7 +13,7 @@ const json = fs.existsSync(packageJSON)
 export const moduleHome = path.resolve(__dirname)
 const indexTemplatePath = 'src/index.html'
 const indexTemplatePathProject = path.resolve(process.cwd(), indexTemplatePath)
-let indexTemplatePathMhy = path.resolve(moduleHome, '../../../../', indexTemplatePath)
+let indexTemplatePathMhy = path.resolve(rg(`@mhy/mhy/${indexTemplatePath}`))
 export const indexTemplate = fs.existsSync(indexTemplatePathProject)
 	? indexTemplatePathProject
 	: indexTemplatePathMhy

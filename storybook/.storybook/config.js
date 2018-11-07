@@ -5,8 +5,6 @@ import { withKnobs } from '@storybook/addon-knobs'
 import StoryRouter from 'storybook-react-router'
 import { merge } from 'lodash-es'
 
-
-
 // Decorators
 addDecorator((story, context) => withInfo()(story)(context))
 addDecorator(withKnobs)
@@ -43,5 +41,5 @@ setDefaults({
 })
 
 // Require all *.story.js file
-const req = require.context('src', true, /\.?(story|stories|book)\.jsx?$/)
+const req = require.context('src', true, /\.?(story|stories|book)\.[jt]sx?$/)
 configure(() => req.keys().forEach(req), module)

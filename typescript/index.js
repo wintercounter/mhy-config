@@ -1,6 +1,15 @@
 import path from 'path'
+import rg from 'resolve-global'
 
 import { load } from '../'
+
+let aliases
+try {
+    aliases = require('../webpack').default.resolve.alias
+} catch (e) {
+    aliases = {}
+}
+aliases = Object.entries(aliases)
 
 const tsconfig = module.exports = module.exports.default = load('typescript', {
 	"compilerOptions": {
@@ -9,9 +18,28 @@ const tsconfig = module.exports = module.exports.default = load('typescript', {
 		"allowJs": true,
 		"noEmit": true,
 		"strict": true,
-		//"isolatedModules": true,
-		"esModuleInterop": true
+        "jsx": "preserve",
+		"esModuleInterop": true,
+        "noImplicitAny": false,
+        "typeRoots": [
+            path.resolve(process.cwd(), 'node_modules', '@types'),
+            path.resolve(rg('@mhy/mhy'), '../../', 'node_modules', '@types')
+        ],
+		"baseUrl": path.resolve(process.cwd(), 'src'),
+		"paths": aliases.reduce(function (acc, [k]) {
+            acc[`${k}/*`] = [`${k.replace('@', ``)}/*`]
+            return acc
+        }, {
+			'*': [
+			    path.resolve(rg('@mhy/mhy'), '../../', 'node_modules', '*'),
+                path.resolve(rg('@mhy/mhy'), '../../', 'node_modules', '@types', '*')
+            ]
+		})
 	},
+    /*"exclude": [
+        "node_modules",
+        "!node_modules/@types"
+    ],*/
 	"include": [
 		path.resolve(process.cwd(), 'src/**/*')
 	]

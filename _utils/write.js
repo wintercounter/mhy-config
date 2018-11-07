@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 
 module.exports = (dir, filename, src, json = false) => {
-    src = JSON.stringify(src)
+    src = JSON.stringify(src, null, 2)
     return fs.writeFile(
         path.resolve(dir, filename),
         json ? src : `module.exports = module.exports.default = ${src}`,

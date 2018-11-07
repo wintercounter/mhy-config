@@ -32,7 +32,6 @@ class Jest extends Process {
 	static isEnabled = true
 
 	get commandToUse() {
-		console.log(getJestCLICmd())
 		return process.MHY_ENV === 'ui'
 			? getJestServeCLICmd
 			: getJestCLICmd

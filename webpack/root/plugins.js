@@ -3,7 +3,7 @@ const path = require('path')
 
 const WebpackManifestPlugin = require('webpack-manifest-plugin')
 const WebpackPwaManifestPlugin = require('webpack-pwa-manifest')
-const { GenerateSW, InjectManifest } = require('workbox-webpack-plugin');
+const { GenerateSW, InjectManifest } = require('workbox-webpack-plugin')
 
 const { moduleHome } = require('../../')
 

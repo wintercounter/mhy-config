@@ -11,10 +11,10 @@ module.exports.default = (rules) => [
 	...rules,
 	{
 		enforce: 'pre',
-		test: /\.js$/,
+		test: /\.jsx?$/,
 		loader: require.resolve('eslint-loader'),
 		include: /src/,
-		exclude: /node_modules|dist/,
+		exclude: /node_modules|dist|build/,
 		options: { configFile }
 	}
 ]
