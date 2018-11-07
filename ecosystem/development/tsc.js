@@ -14,10 +14,11 @@ const CmdTscCLI = [
 class Tsc extends Process {
     static isEnabled = true
 
-	constructor() {
-		super()
-		this.run('start')
-	}
+    constructor(args) {
+        const { args: [defaultAction = 'start'], flags } = args
+        super(args)
+        this.run(defaultAction, { flags })
+    }
 
 	onStart = ({name}) => {
         // Just initiate tsconfig.json creation

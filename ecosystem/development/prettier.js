@@ -41,9 +41,10 @@ class Prettier extends Process {
             : getPrettierCLICmd
     }
 
-    constructor(defaultAction = 'start') {
-        super()
-        this.run(defaultAction)
+    constructor(args) {
+        const { args: [defaultAction = 'start'], flags } = args
+        super(args)
+        this.run(defaultAction, { flags })
     }
 
     onStart = ({name}, {flags = []}) => this.spawn(name, this.commandToUse(flags))

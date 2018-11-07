@@ -13,6 +13,7 @@ aliases = Object.entries(aliases)
 
 const tsconfig = module.exports = module.exports.default = load('typescript', {
 	"compilerOptions": {
+		"module": "esNext",
 		"target": "esnext",
 		"moduleResolution": "node",
 		"allowJs": true,

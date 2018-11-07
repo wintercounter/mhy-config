@@ -6,13 +6,15 @@ import { moduleHome } from '../..'
 const onlyChangedFlag = '--onlyChanged'
 const watchFlag = '--watch'
 const watchAllFlag = '--watchAll'
-const getJestCLICmd = (flags = []) => [
-	'node',
-	require.resolve('jest-cli/bin/jest.js'),
-	'--passWithNoTests',
-	`--config=${path.resolve(moduleHome, 'jest/index.js')}`,
-	...flags
-]
+const getJestCLICmd = (flags = []) => {
+    return [
+        'node',
+        require.resolve('jest-cli/bin/jest.js'),
+        '--passWithNoTests',
+        `--config=${path.resolve(moduleHome, 'jest/index.js')}`,
+        ...flags
+    ]
+}
 
 const getJestServeCLICmd = (flags) => [
 	'node',
@@ -37,9 +39,10 @@ class Jest extends Process {
 			: getJestCLICmd
 	}
 
-	constructor(defaultAction = 'start') {
-		super()
-		this.run(defaultAction)
+	constructor(args) {
+        const { args: [defaultAction = 'start'], flags } = args
+		super(args)
+		this.run(defaultAction, { flags })
 	}
 
 	onStart = ({name}, {flags = []}) => this.spawn(name, this.commandToUse(flags))

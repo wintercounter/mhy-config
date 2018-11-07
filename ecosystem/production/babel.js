@@ -18,10 +18,11 @@ const CmdBabelCLI = [
 class Babel extends Process {
     static isEnabled = true
 
-	constructor() {
-		super()
-		this.run('start')
-	}
+    constructor(args) {
+        const { args: [defaultAction = 'start'], flags } = args
+        super(args)
+        this.run(defaultAction, { flags })
+    }
 
 	onStart = ({name}) => this.spawn(name, CmdBabelCLI)
 
