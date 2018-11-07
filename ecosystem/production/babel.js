@@ -12,6 +12,8 @@ const CmdBabelCLI = [
 	'--ignore',
 	'node_modules,test,tests,dist,temp,tmp',
 	'--delete-dir-on-start',
+    '--extensions',
+	'.js,.jsx,.ts,.tsx',
 	...process.argv.slice(4)
 ]
 
@@ -24,7 +26,10 @@ class Babel extends Process {
         this.run(defaultAction, { flags })
     }
 
-	onStart = ({name}) => this.spawn(name, CmdBabelCLI)
+	onStart = ({name}) => {
+    	console.log(CmdBabelCLI)
+    	this.spawn(name, CmdBabelCLI)
+    }
 
 	actions = [
 		{

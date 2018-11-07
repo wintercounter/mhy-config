@@ -11,7 +11,7 @@
 		"no-conditional-assignment": true,
 		"no-consecutive-blank-lines": false,
 		"quotemark": [true, "single", "jsx-double"],
-		"indent": [true, "tabs"],
+		"indent": [true, "spaces", 4],
 		"member-access": [true, "no-public"],
 		"arrow-parens": [true, "ban-single-arg-parens"],
 		"object-literal-sort-keys": false,
