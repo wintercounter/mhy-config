@@ -19,6 +19,7 @@ module.exports = load('jest', {
 	transform: {
 		'^.+\\.[jt]sx?$': require.resolve('./preprocess')
 	},
+    transformIgnorePatterns: [],
 	bail: true,
 	testRegex: '\\.?(test|tests|spec|integration)\\.[jt]sx?$',
 	collectCoverage: false,

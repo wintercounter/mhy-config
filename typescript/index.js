@@ -20,6 +20,7 @@ const tsconfig = module.exports = module.exports.default = load('typescript', {
 		"noEmit": true,
 		"strict": true,
         "jsx": "preserve",
+        "resolveJsonModule": true,
 		"esModuleInterop": true,
         "noImplicitAny": false,
         "typeRoots": [
