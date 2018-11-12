@@ -21,7 +21,7 @@ jobs:
           name: Install dependencies
           working_directory: ~/repo
           command: |
-            npm i @mhy/mhy
+            yarn global add @mhy/mhy
             npm i
 
       - deploy:
