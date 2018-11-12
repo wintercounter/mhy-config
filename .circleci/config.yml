@@ -21,7 +21,7 @@ jobs:
           name: Install dependencies
           working_directory: ~/repo
           command: |
-            sudo npm i @mhy/mhy -g
+            npm i @mhy/mhy
             npm i
 
       - deploy:
@@ -29,4 +29,4 @@ jobs:
           working_directory: ~/repo
           command: |
             echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
-            sudo npm pub
+            npm pub
