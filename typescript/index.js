@@ -19,9 +19,10 @@ const tsconfig = module.exports = module.exports.default = load('typescript', {
 		"allowJs": true,
 		"noEmit": true,
 		"strict": true,
-        	"jsx": "preserve",
+    "jsx": "preserve",
+    "resolveJsonModule": true,
 		"esModuleInterop": true,
-        	"noImplicitAny": false,
+    "noImplicitAny": false,
 		"typeRoots": [
 	    		path.resolve(process.cwd(), 'node_modules', '@types'),
 		    	path.resolve(rg('@mhy/mhy'), '../../', 'node_modules', '@types')

@@ -26,10 +26,7 @@ class Babel extends Process {
         this.run(defaultAction, { flags })
     }
 
-	onStart = ({name}) => {
-    	console.log(CmdBabelCLI)
-    	this.spawn(name, CmdBabelCLI)
-    }
+	onStart = ({name}) => this.spawn(name, CmdBabelCLI)
 
 	actions = [
 		{

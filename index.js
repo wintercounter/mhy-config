@@ -13,7 +13,13 @@ const json = fs.existsSync(packageJSON)
 export const moduleHome = path.resolve(__dirname)
 const indexTemplatePath = 'src/index.html'
 const indexTemplatePathProject = path.resolve(process.cwd(), indexTemplatePath)
-let indexTemplatePathMhy = path.resolve(rg(`@mhy/mhy/${indexTemplatePath}`))
+let indexTemplatePathMhy
+try {
+    indexTemplatePathMhy = path.resolve(rg(`@mhy/mhy/${indexTemplatePath}`))
+} catch(e) {
+    indexTemplatePathMhy = path.resolve(`${process.env.NPM_CONFIG_PREFIX}/lib/node_modules/@mhy/mhy/${indexTemplatePath}`)
+}
+
 export const indexTemplate = fs.existsSync(indexTemplatePathProject)
 	? indexTemplatePathProject
 	: indexTemplatePathMhy
