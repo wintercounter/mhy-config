@@ -19,30 +19,30 @@ const tsconfig = module.exports = module.exports.default = load('typescript', {
 		"allowJs": true,
 		"noEmit": true,
 		"strict": true,
-        "jsx": "preserve",
+        	"jsx": "preserve",
 		"esModuleInterop": true,
-        "noImplicitAny": false,
-        "typeRoots": [
-            path.resolve(process.cwd(), 'node_modules', '@types'),
-            path.resolve(rg('@mhy/mhy'), '../../', 'node_modules', '@types')
-        ],
+        	"noImplicitAny": false,
+		"typeRoots": [
+	    		path.resolve(process.cwd(), 'node_modules', '@types'),
+		    	path.resolve(rg('@mhy/mhy'), '../../', 'node_modules', '@types')
+		],
 		"baseUrl": path.resolve(process.cwd(), 'src'),
 		"paths": aliases.reduce(function (acc, [k]) {
 			const folder = k.replace('@', ``)
-            acc[k] = [`${folder}/index`]
-            acc[`${k}/*`] = [`${folder}/*`]
-            return acc
-        }, {
+		    	acc[k] = [`${folder}/index`]
+		    	acc[`${k}/*`] = [`${folder}/*`]
+		    	return acc
+        	}, {
 			'*': [
-			    path.resolve(rg('@mhy/mhy'), '../../', 'node_modules', '*'),
-                path.resolve(rg('@mhy/mhy'), '../../', 'node_modules', '@types', '*')
-            ]
+			    	path.resolve(rg('@mhy/mhy'), '../../', 'node_modules', '*'),
+                		path.resolve(rg('@mhy/mhy'), '../../', 'node_modules', '@types', '*')
+            		]
 		})
 	},
-    /*"exclude": [
-        "node_modules",
-        "!node_modules/@types"
-    ],*/
+	/*"exclude": [
+	"node_modules",
+	"!node_modules/@types"
+	],*/
 	"include": [
 		path.resolve(process.cwd(), 'src/**/*')
 	]
