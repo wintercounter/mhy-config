@@ -7,7 +7,7 @@ module.exports = (dir, filename, src, json = false) => {
         path.resolve(dir, filename),
         json ? src : `module.exports = module.exports.default = ${src}`,
         'utf-8',
-        function (err) {
+        function(err) {
             err && console.error(err)
         }
     )
