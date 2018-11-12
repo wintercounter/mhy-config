@@ -14,17 +14,19 @@ for (const [key, value] of Object.entries(start)) {
     }
 }
 
-
 class StorybookStart extends Process {
     static isEnabled = true
 
     constructor(args) {
-        const { args: [defaultAction = 'start'], flags } = args
+        const {
+            args: [defaultAction = 'start'],
+            flags
+        } = args
         super(args)
         this.run(defaultAction, { flags })
     }
 
-    onStart = ({name}) => this.spawn(name, CmdStorybookStartCLI)
+    onStart = ({ name }) => this.spawn(name, CmdStorybookStartCLI)
 
     onRestart = async () => {
         await this.kill('start')

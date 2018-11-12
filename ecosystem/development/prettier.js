@@ -7,7 +7,10 @@ const getPrettierCLICmd = (flags = [], fileName) => {
     // It's a file/path, use that
     let file = flags[flags.length]
     if (!file) {
-        flags.push(fileName || `"${path.resolve(process.cwd(), 'src/**/*.{js,jsx,ts,tsx}')}"`)
+        flags.push(
+            fileName ||
+                `"${path.resolve(process.cwd(), 'src/**/*.{js,jsx,ts,tsx}')}"`
+        )
     }
     return [
         'node',
@@ -18,7 +21,7 @@ const getPrettierCLICmd = (flags = [], fileName) => {
     ]
 }
 
-const getPrettierServeCLICmd = (flags) => [
+const getPrettierServeCLICmd = flags => [
     'node',
     require.resolve('chokidar-cli/index.js'),
     `"src/**/*.js"`,
@@ -42,12 +45,16 @@ class Prettier extends Process {
     }
 
     constructor(args) {
-        const { args: [defaultAction = 'start'], flags } = args
+        const {
+            args: [defaultAction = 'start'],
+            flags
+        } = args
         super(args)
         this.run(defaultAction, { flags })
     }
 
-    onStart = ({name}, {flags = []}) => this.spawn(name, this.commandToUse(flags))
+    onStart = ({ name }, { flags = [] }) =>
+        this.spawn(name, this.commandToUse(flags))
 
     onRestart = async () => {
         await this.kill('start')
@@ -60,8 +67,8 @@ class Prettier extends Process {
             this.emit('action', 'clear')
         }
         return d
-        .replace('PASS', '{green-bg} PASS {/green-bg}')
-        .replace('FAIL', '{red-bg} FAIL {/red-bg}')
+            .replace('PASS', '{green-bg} PASS {/green-bg}')
+            .replace('FAIL', '{red-bg} FAIL {/red-bg}')
     }
 
     actions = [
@@ -81,4 +88,3 @@ class Prettier extends Process {
 }
 
 module.exports.default = () => Prettier
-

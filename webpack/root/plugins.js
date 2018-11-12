@@ -27,11 +27,10 @@ module.exports.default = (plugins = []) => {
         new InjectManifest({ swSrc })
     }
 
-	return plugins.concat([
+    return plugins.concat([
         new WebpackPwaManifestPlugin(manifest),
-		new WebpackManifestPlugin({
-			fileName: './manifest.webpack.json',
-		})
-	])
+        new WebpackManifestPlugin({
+            fileName: './manifest.webpack.json'
+        })
+    ])
 }
-

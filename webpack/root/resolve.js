@@ -2,13 +2,24 @@ const { moduleHome } = require('../../')
 const path = require('path')
 
 module.exports.default = () => ({
-	extensions : ['.js', '.mjs', '.jsx', '.css', '.scss', '.ts', '.tsx', '.json'],
-	modules: Array.from(new Set([
-		path.resolve(moduleHome, '../../../'),
-		path.resolve(process.cwd(), 'node_modules'),
-        path.resolve(moduleHome, '../node_modules'),
-		'../node_modules'
-	])),
+    extensions: [
+        '.js',
+        '.mjs',
+        '.jsx',
+        '.css',
+        '.scss',
+        '.ts',
+        '.tsx',
+        '.json'
+    ],
+    modules: Array.from(
+        new Set([
+            path.resolve(moduleHome, '../../../'),
+            path.resolve(process.cwd(), 'node_modules'),
+            path.resolve(moduleHome, '../node_modules'),
+            '../node_modules'
+        ])
+    ),
     alias: {
         '@components': path.resolve(process.cwd(), 'src/components/'),
         '@constants': path.resolve(process.cwd(), 'src/constants/'),

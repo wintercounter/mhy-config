@@ -16,93 +16,96 @@ const getJestCLICmd = (flags = []) => {
     ]
 }
 
-const getJestServeCLICmd = (flags) => [
-	'node',
-	require.resolve('chokidar-cli/index.js'),
-	`"src/**/*.js"`,
-	`"src/**/*.jsx"`,
-	`"src/**/*.ts"`,
-	`"src/**/*.tsx"`,
-	'-c',
-	`"${getJestCLICmd(flags).join(' ')}"`,
-	'--initial',
-	'--ignore',
-	'"node_modules"'
+const getJestServeCLICmd = flags => [
+    'node',
+    require.resolve('chokidar-cli/index.js'),
+    `"src/**/*.js"`,
+    `"src/**/*.jsx"`,
+    `"src/**/*.ts"`,
+    `"src/**/*.tsx"`,
+    '-c',
+    `"${getJestCLICmd(flags).join(' ')}"`,
+    '--initial',
+    '--ignore',
+    '"node_modules"'
 ]
 
 class Jest extends Process {
-	static isEnabled = true
+    static isEnabled = true
 
-	get commandToUse() {
-		return process.MHY_ENV === 'ui'
-			? getJestServeCLICmd
-			: getJestCLICmd
-	}
+    get commandToUse() {
+        return process.MHY_ENV === 'ui' ? getJestServeCLICmd : getJestCLICmd
+    }
 
-	constructor(args) {
-        const { args: [defaultAction = 'start'], flags } = args
-		super(args)
-		this.run(defaultAction, { flags })
-	}
+    constructor(args) {
+        const {
+            args: [defaultAction = 'start'],
+            flags
+        } = args
+        super(args)
+        this.run(defaultAction, { flags })
+    }
 
-	onStart = ({name}, {flags = []}) => this.spawn(name, this.commandToUse(flags))
+    onStart = ({ name }, { flags = [] }) =>
+        this.spawn(name, this.commandToUse(flags))
 
-	onWatch = ({name}, {flags = []}) => this.spawn(name, this.commandToUse([...flags, watchFlag]))
+    onWatch = ({ name }, { flags = [] }) =>
+        this.spawn(name, this.commandToUse([...flags, watchFlag]))
 
-	onWatchAll = ({name}, {flags = []}) => this.spawn(name, this.commandToUse([...flags, watchAllFlag]))
+    onWatchAll = ({ name }, { flags = [] }) =>
+        this.spawn(name, this.commandToUse([...flags, watchAllFlag]))
 
-	onRunAll = async () => {
-		await this.kill('start')
-		this.run('start')
-	}
+    onRunAll = async () => {
+        await this.kill('start')
+        this.run('start')
+    }
 
-	onOnlyChanged = async () => {
-		await this.kill('start')
-		this.run('start', { flags : [onlyChangedFlag] })
-	}
+    onOnlyChanged = async () => {
+        await this.kill('start')
+        this.run('start', { flags: [onlyChangedFlag] })
+    }
 
-	// Feature test only
-	processLine(d) {
-		if (d.startsWith('change:')) {
-			this.emit('action', 'clear')
-		}
-		return d
-			.replace('PASS', '{green-bg} PASS {/green-bg}')
-			.replace('FAIL', '{red-bg} FAIL {/red-bg}')
-	}
+    // Feature test only
+    processLine(d) {
+        if (d.startsWith('change:')) {
+            this.emit('action', 'clear')
+        }
+        return d
+            .replace('PASS', '{green-bg} PASS {/green-bg}')
+            .replace('FAIL', '{red-bg} FAIL {/red-bg}')
+    }
 
-	actions = [
-		{
-			name: 'start',
-			enabled: true,
-			onRun: this.onStart
-		},
-		{
-			name: 'changed',
-			label: 'Only Changed',
-			shortcut: 'c',
-			enabled: true,
-			onRun: this.onOnlyChanged
-		},
-		{
-			name: 'all',
-			label: 'Run All',
-			shortcut: 'a',
-			enabled: true,
-			onRun: this.onRunAll
-		},
-		{
-			name: 'watch',
-			enabled: true,
-			onRun: this.onWatch
-		},
-		{
-			name: 'watch-all',
-			enabled: true,
-			onRun: this.onWatchAll
-		}
-	]
+    actions = [
+        {
+            name: 'start',
+            enabled: true,
+            onRun: this.onStart
+        },
+        {
+            name: 'changed',
+            label: 'Only Changed',
+            shortcut: 'c',
+            enabled: true,
+            onRun: this.onOnlyChanged
+        },
+        {
+            name: 'all',
+            label: 'Run All',
+            shortcut: 'a',
+            enabled: true,
+            onRun: this.onRunAll
+        },
+        {
+            name: 'watch',
+            enabled: true,
+            onRun: this.onWatch
+        },
+        {
+            name: 'watch-all',
+            enabled: true,
+            onRun: this.onWatchAll
+        }
+    ]
 }
 
 module.exports.default = () => Jest
-

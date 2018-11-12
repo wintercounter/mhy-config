@@ -14,12 +14,15 @@ class WDS extends Process {
     static isEnabled = true
 
     constructor(args) {
-        const { args: [defaultAction = 'start'], flags } = args
+        const {
+            args: [defaultAction = 'start'],
+            flags
+        } = args
         super(args)
         this.run(defaultAction, { flags })
     }
 
-    onStart = ({name}) => this.spawn(name, CmdWDSCLI)
+    onStart = ({ name }) => this.spawn(name, CmdWDSCLI)
 
     onRestart = async () => {
         await this.kill('start')

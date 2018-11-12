@@ -1,40 +1,66 @@
 import path from 'path'
 import Process from '@mhy/process/dist'
+import copydir from 'copy-dir'
 
 const CmdBabelCLI = [
-	'node',
-	require.resolve('@babel/cli/bin/babel.js'),
-	path.resolve(process.cwd(), 'src'),
-	'--out-dir',
-	'dist',
-	'--config-file',
-	path.resolve(__dirname, '../../babel'),
-	'--ignore',
-	'node_modules,test,tests,dist,temp,tmp',
-	'--delete-dir-on-start',
+    'node',
+    require.resolve('@babel/cli/bin/babel.js'),
+    path.resolve(process.cwd(), 'src'),
+    '--out-dir',
+    'dist',
+    '--config-file',
+    path.resolve(__dirname, '../../babel'),
+    '--ignore',
+    'node_modules,test,tests,dist,temp,tmp',
+    '--delete-dir-on-start',
     '--extensions',
-	'.js,.jsx,.ts,.tsx',
-	...process.argv.slice(4)
+    '.js,.jsx,.ts,.tsx',
+    ...process.argv.slice(4)
 ]
 
 class Babel extends Process {
     static isEnabled = true
 
     constructor(args) {
-        const { args: [defaultAction = 'start'], flags } = args
+        const {
+            args: [defaultAction = 'start'],
+            flags
+        } = args
         super(args)
         this.run(defaultAction, { flags })
     }
 
-	onStart = ({name}) => this.spawn(name, CmdBabelCLI)
+    onStart = ({ name }) => {
+        this.spawn(name, CmdBabelCLI).on('exit', () => {
+            copydir.sync(
+                path.resolve(process.cwd(), 'src'),
+                path.resolve(process.cwd(), 'dist'),
+                function(stat, filepath, filename) {
+                    if (stat === 'file') {
+                        if (filename.endsWith('.d.ts')) {
+                            return true
+                        }
+                        if (
+                            filename.endsWith('ts') ||
+                            filename.endsWith('tsx')
+                        ) {
+                            return false
+                        }
+                        return true
+                    }
+                    return true
+                }
+            )
+        })
+    }
 
-	actions = [
-		{
-			name: 'start',
-			enabled: true,
-			onRun: this.onStart
-		}
-	]
+    actions = [
+        {
+            name: 'start',
+            enabled: true,
+            onRun: this.onStart
+        }
+    ]
 }
 
 module.exports.default = () => Babel

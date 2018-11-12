@@ -5,9 +5,9 @@ const { moduleHome } = require('../../../../')
 let configFile = path.resolve(moduleHome, 'tslint.json')
 configFile = fs.existsSync(configFile)
     ? configFile
-    :  path.resolve(moduleHome, '../', 'tslint.json')
+    : path.resolve(moduleHome, '../', 'tslint.json')
 
-module.exports.default = (rules) => [
+module.exports.default = rules => [
     ...rules,
     {
         enforce: 'pre',

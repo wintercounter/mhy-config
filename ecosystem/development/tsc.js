@@ -4,49 +4,52 @@ import Process from '@mhy/process/dist'
 const { moduleHome } = require('../../index')
 
 const CmdTscCLI = [
-	'node',
-	require.resolve('typescript/lib/tsc.js'),
-	'-w',
-	'--project',
-	path.resolve(process.cwd(), 'tsconfig.json')
+    'node',
+    require.resolve('typescript/lib/tsc.js'),
+    '-w',
+    '--project',
+    path.resolve(process.cwd(), 'tsconfig.json')
 ]
 
 class Tsc extends Process {
     static isEnabled = true
 
     constructor(args) {
-        const { args: [defaultAction = 'start'], flags } = args
+        const {
+            args: [defaultAction = 'start'],
+            flags
+        } = args
         super(args)
         this.run(defaultAction, { flags })
     }
 
-	onStart = ({name}) => {
+    onStart = ({ name }) => {
         // Just initiate tsconfig.json creation
         require(path.resolve(moduleHome, 'typescript/index.js'))
 
-		// Ensure file is being written
-		setTimeout(() => this.spawn(name, CmdTscCLI), 200)
+        // Ensure file is being written
+        setTimeout(() => this.spawn(name, CmdTscCLI), 200)
     }
 
-	onRestart = async () => {
-		await this.kill('start')
-		this.run('start')
-	}
+    onRestart = async () => {
+        await this.kill('start')
+        this.run('start')
+    }
 
-	actions = [
-		{
-			name: 'start',
-			enabled: true,
-			onRun: this.onStart
-		},
-		{
-			name: 'restart',
-			label: 'Restart',
-			shortcut: 'r',
-			enabled: true,
-			onRun: this.onRestart
-		}
-	]
+    actions = [
+        {
+            name: 'start',
+            enabled: true,
+            onRun: this.onStart
+        },
+        {
+            name: 'restart',
+            label: 'Restart',
+            shortcut: 'r',
+            enabled: true,
+            onRun: this.onRestart
+        }
+    ]
 }
 
 module.exports.default = () => Tsc

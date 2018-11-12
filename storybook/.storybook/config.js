@@ -13,31 +13,32 @@ addDecorator(StoryRouter())
 // Configurations
 
 setDefaults({
-    maxPropsIntoLine : 1,
-    inline : true,
-    styles : (defaultStyles) => merge({}, defaultStyles, {
-        header : {
-            body : {
-                marginBottom : '0',
-                paddingTop : '0',
-                borderBottom : 'none'
+    maxPropsIntoLine: 1,
+    inline: true,
+    styles: defaultStyles =>
+        merge({}, defaultStyles, {
+            header: {
+                body: {
+                    marginBottom: '0',
+                    paddingTop: '0',
+                    borderBottom: 'none'
+                }
+            },
+            infoStory: {
+                marginBottom: '20px'
+            },
+            infoBody: {
+                marginTop: '0',
+                marginBottom: '20px',
+                padding: '40px'
+            },
+            source: {
+                h1: {
+                    margin: '20px 0',
+                    padding: '0 0 10px'
+                }
             }
-        },
-        infoStory : {
-            marginBottom : '20px'
-        },
-        infoBody : {
-            marginTop : '0',
-            marginBottom : '20px',
-            padding : '40px'
-        },
-        source : {
-            h1 : {
-                margin : '20px 0',
-                padding : '0 0 10px'
-            }
-        }
-    })
+        })
 })
 
 // Require all *.story.js file

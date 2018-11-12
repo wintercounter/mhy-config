@@ -3,10 +3,13 @@ const { moduleHome } = require('../../../../')
 
 const getOptions = test => ({
     test,
-    include: Array.from(new Set([ // Make items unique
-        path.join(moduleHome, 'src'),
-        path.join(process.cwd(), 'src')
-    ])),
+    include: Array.from(
+        new Set([
+            // Make items unique
+            path.join(moduleHome, 'src'),
+            path.join(process.cwd(), 'src')
+        ])
+    ),
     loader: require.resolve('prettier-loader'),
     // force this loader to run first if it's not first in loaders list
     enforce: 'pre',
@@ -16,15 +19,11 @@ const getOptions = test => ({
     options: require('../../../../prettier')
 })
 
-module.exports.default = (rules) => {
+module.exports.default = rules => {
     const babylon = getOptions(/\.jsx?$/)
     const typescript = getOptions(/\.tsx?$/)
     babylon.options.parser = 'babylon'
-	typescript.options.parser = 'typescript'
+    typescript.options.parser = 'typescript'
 
-	return [
-        ...rules,
-        babylon,
-		typescript
-    ]
+    return [...rules, babylon, typescript]
 }

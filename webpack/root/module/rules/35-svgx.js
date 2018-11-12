@@ -1,4 +1,4 @@
-module.exports.default = (rules) => [
+module.exports.default = rules => [
     ...rules,
     {
         test: /\.svgx$/,

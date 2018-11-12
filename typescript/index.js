@@ -16,13 +16,14 @@ const tsconfig = (module.exports = module.exports.default = load('typescript', {
         module: 'esNext',
         target: 'esnext',
         moduleResolution: 'node',
-        allowJs: true,
-        noEmit: true,
+        allowJs: false,
+        emitDeclarationOnly: true,
         strict: true,
         jsx: 'preserve',
         resolveJsonModule: true,
         esModuleInterop: true,
         noImplicitAny: false,
+        declaration: true,
         typeRoots: [
             path.resolve(process.cwd(), 'node_modules', '@types'),
             path.resolve(rg('@mhy/mhy'), '../../', 'node_modules', '@types')
