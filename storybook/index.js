@@ -7,14 +7,22 @@ require('../_utils/babelrc')(path.resolve(__dirname, '.storybook'))
 
 // Add valid CWD_SRC fro require.context (needs to be literal)
 const configPath = path.resolve(__dirname, './.storybook/config.js')
-fs.readFile(configPath, 'utf8', function (err,data) {
+fs.readFile(configPath, 'utf8', function(err, data) {
     if (err) {
-        return console.log(err);
+        return console.log(err)
     }
-    const result = data.replace(/require\.context\('(.*?)'/g, function(match, param) { return match.replace(param, path.resolve(process.cwd(), 'src').replace(/\\/g,'/'))})
+    const result = data.replace(/require\.context\('(.*?)'/g, function(
+        match,
+        param
+    ) {
+        return match.replace(
+            param,
+            path.resolve(process.cwd(), 'src').replace(/\\/g, '/')
+        )
+    })
 
-    fs.writeFile(configPath, result, 'utf8', function (err) {
-        if (err) return console.log(err);
+    fs.writeFile(configPath, result, 'utf8', function(err) {
+        if (err) return console.log(err)
     })
 })
 
@@ -26,7 +34,6 @@ module.exports = module.exports.default = load('storybook', {
         'config-dir': path.resolve(__dirname, '.storybook')
     }
 })
-
 
 /*
 Usage: start-storybook [options]
