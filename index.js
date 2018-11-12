@@ -13,6 +13,7 @@ const json = fs.existsSync(packageJSON)
 export const moduleHome = path.resolve(__dirname)
 const indexTemplatePath = 'src/index.html'
 const indexTemplatePathProject = path.resolve(process.cwd(), indexTemplatePath)
+
 let indexTemplatePathMhy
 try {
     indexTemplatePathMhy = path.resolve(rg(`@mhy/mhy/${indexTemplatePath}`))
