@@ -28,7 +28,9 @@ const tsconfig = module.exports = module.exports.default = load('typescript', {
         ],
 		"baseUrl": path.resolve(process.cwd(), 'src'),
 		"paths": aliases.reduce(function (acc, [k]) {
-            acc[`${k}/*`] = [`${k.replace('@', ``)}/*`]
+			const folder = k.replace('@', ``)
+            acc[k] = [`${folder}/index`]
+            acc[`${k}/*`] = [`${folder}/*`]
             return acc
         }, {
 			'*': [
