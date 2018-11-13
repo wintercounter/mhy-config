@@ -25,7 +25,7 @@ module.exports = module.exports.default = load('prettier', {
      *   - "flow"
      *   - "babylon"
      */
-    parser: 'typescript',
+//    parser: 'babylon',
     /**
      * Do not print semicolons, except at the beginning of lines which may need them.
      * Valid options:
