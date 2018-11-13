@@ -2,7 +2,7 @@ import path from 'path'
 import Process from '@mhy/process/dist'
 import copydir from 'copy-dir'
 
-const CmdBabelCLI = [
+const getCmdBabelCLI = (flags = []) => [
     'node',
     require.resolve('@babel/cli/bin/babel.js'),
     path.resolve(process.cwd(), 'src'),
@@ -15,7 +15,7 @@ const CmdBabelCLI = [
     '--delete-dir-on-start',
     '--extensions',
     '.js,.jsx,.ts,.tsx',
-    ...process.argv.slice(4)
+    ...flags
 ]
 
 class Babel extends Process {
@@ -30,8 +30,8 @@ class Babel extends Process {
         this.run(defaultAction, { flags })
     }
 
-    onStart = ({ name }) => {
-        this.spawn(name, CmdBabelCLI).on('exit', () => {
+    onStart = ({ name }, { flags }) => {
+        this.spawn(name, getCmdBabelCLI(flags)).on('exit', () => {
             copydir.sync(
                 path.resolve(process.cwd(), 'src'),
                 path.resolve(process.cwd(), 'dist'),
