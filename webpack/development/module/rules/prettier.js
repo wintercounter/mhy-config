@@ -16,7 +16,7 @@ const getOptions = test => ({
     // avoid running prettier on all the files!
     // use it only on your source code and not on dependencies!
     exclude: /node_modules/,
-    options: require('../../../../prettier')
+    options: { ...require('../../../../prettier') }
 })
 
 module.exports.default = rules => {
