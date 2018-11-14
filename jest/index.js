@@ -24,9 +24,9 @@ module.exports = load('jest', {
     verbose: true,
     moduleNameMapper: {
         '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-            '<rootDir>/../resources/jest-mocks/File.js',
+            'identity-obj-proxy',
         '\\.(s?css|less)$': 'identity-obj-proxy',
-        '\\.(svgx)$': path.resolve(__dirname, 'mocks/react-null.js')
+        '\\.(svgx?)$': path.resolve(__dirname, 'mocks/react-null.js')
     },
     collectCoverageFrom: ['**/*.js']
 })

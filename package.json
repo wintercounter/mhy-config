@@ -1,6 +1,6 @@
 {
   "name": "@mhy/config",
-  "version": "0.15.21",
+  "version": "0.15.22",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -209,6 +209,7 @@
     "tslint-loader": "^3.5.4",
     "tslint-react": "^3.6.0",
     "typescript": "^3.1.6",
+    "url-loader": "^1.1.2",
     "url-search-params-polyfill": "^5.0.0",
     "weakmap-polyfill": "^2.0.0",
     "webpack": "^4.25.1",
