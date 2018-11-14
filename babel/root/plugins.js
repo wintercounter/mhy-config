@@ -8,6 +8,7 @@ aliases = Object.entries(aliases)
 
 export default (defaults = []) => [
     ...defaults,
+    require.resolve('babel-plugin-macros'),
     require.resolve('@babel/plugin-syntax-dynamic-import'),
     require.resolve('babel-plugin-transform-remove-strict-mode'),
     require.resolve('@babel/plugin-proposal-class-properties'),
