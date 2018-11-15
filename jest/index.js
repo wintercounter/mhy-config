@@ -7,7 +7,7 @@ require('../_utils/babelrc')(__dirname)
 module.exports = load('jest', {
     setupTestFrameworkScriptFile: path.resolve(moduleHome, 'jest/setup.js'),
     roots: [path.resolve(process.cwd(), 'src')],
-    watchPathIgnorePatterns: [/__.*__/],
+    watchPathIgnorePatterns: ['__.*__'],
     moduleFileExtensions: ['js', 'jsx', 'json', 'ts', 'tsx'],
     modulePaths: [
         path.resolve(process.cwd(), 'src'),
