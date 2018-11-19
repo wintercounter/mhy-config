@@ -25,6 +25,7 @@
     "@mhy/process": "0.0.2",
     "copy-dir": "^0.4.0",
     "fast-glob": "^2.2.3",
+    "redux-persist": "^5.10.0",
     "resolve-global": "^0.1.0"
   },
   "devDependencies": {
