@@ -42,7 +42,9 @@ class Babel extends Process {
                         }
                         if (
                             filename.endsWith('ts') ||
-                            filename.endsWith('tsx')
+                            filename.endsWith('tsx') ||
+                            filename.endsWith('js') ||
+                            filename.endsWith('jsx')
                         ) {
                             return false
                         }
