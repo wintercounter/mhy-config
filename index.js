@@ -39,14 +39,15 @@ export const load = (module, defaults = {}) => {
 
 export const loadProcess = module => {
     const d = {}
-    applyEntries(module, 'root', d, [path.resolve(__dirname, 'ecosystem', 'root', `${module}.js`)])
-    applyEntries(module, environment, d, [path.resolve(__dirname, 'ecosystem', environment, `${module}.js`)])
+    applyEntries(module, 'root', d, path.join(__dirname, 'ecosystem', 'root', `${module}.js`))
+    applyEntries(module, environment, d, path.join(__dirname, 'ecosystem', environment, `${module}.js`))
     return d[module]
 }
 
-const applyEntries = (module, env, o, defaultEntries = [path.resolve(__dirname, module, env, '**/*')]) => {
+const applyEntries = (module, env, o, defaultEntries = path.join(__dirname, module, env, '**/*')) => {
     let entries = fg.sync(defaultEntries, {
-        ignore: ['index.js']
+        ignore: ['index.js'],
+        nodir: true
     })
     for (const entry of entries) {
         const segments = entry.split(`/${env}/`)[1].split('/')

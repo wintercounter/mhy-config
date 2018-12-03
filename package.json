@@ -1,6 +1,6 @@
 {
   "name": "@mhy/config",
-  "version": "0.17.2",
+  "version": "0.18.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -24,7 +24,7 @@
   "dependencies": {
     "@mhy/process": "0.0.2",
     "copy-dir": "^0.4.0",
-    "fast-glob": "^2.2.3",
+    "glob": "^7.1.3",
     "resolve-global": "^0.1.0"
   },
   "devDependencies": {
