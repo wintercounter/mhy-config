@@ -5,7 +5,7 @@ import { moduleHome } from '../..'
 
 const getPrettierCLICmd = (flags = [], fileName) => {
     // It's a file/path, use that
-    let file = flags[flags.length]
+    const file = flags[flags.length - 1]
     if (!file) {
         flags.push(
             fileName ||
