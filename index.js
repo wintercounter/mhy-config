@@ -37,12 +37,19 @@ export const load = (module, defaults = {}) => {
     return defaults
 }
 
-const applyEntries = (module, env, o) => {
-    const entries = fg.sync([path.resolve(__dirname, module, env, '**/*')], {
+export const loadProcess = module => {
+    const d = {}
+    applyEntries(module, 'root', d, [path.resolve(__dirname, 'ecosystem', 'root', `${module}.js`)])
+    applyEntries(module, environment, d, [path.resolve(__dirname, 'ecosystem', environment, `${module}.js`)])
+    return d[module]
+}
+
+const applyEntries = (module, env, o, defaultEntries = [path.resolve(__dirname, module, env, '**/*')]) => {
+    let entries = fg.sync(defaultEntries, {
         ignore: ['index.js']
     })
     for (const entry of entries) {
-        const segments = entry.split(`${module}/${env}/`)[1].split('/')
+        const segments = entry.split(`/${env}/`)[1].split('/')
         let tmp = o
         segments.forEach((v, k) => {
             if (Array.isArray(tmp)) {
