@@ -46,7 +46,10 @@ const applyEntries = (module, env, o) => {
         let tmp = o
         segments.forEach((v, k) => {
             if (Array.isArray(tmp)) {
+                // Value is array, no need to do anything with it
             } else if (k < segments.length - 1) {
+                // It's not last item
+
                 tmp[v] = tmp[v] || {}
 
                 if (Array.isArray(tmp[v])) {
@@ -55,6 +58,7 @@ const applyEntries = (module, env, o) => {
                     tmp = tmp[v]
                 }
             } else {
+                // It's last item, require and execute default
                 v = v.replace('.js', '')
                 tmp[v] = require(entry).default(tmp[v])
             }

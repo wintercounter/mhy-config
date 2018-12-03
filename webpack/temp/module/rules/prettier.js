@@ -1,5 +1,5 @@
 const path = require('path')
-const { moduleHome } = require('../../../../')
+const { moduleHome } = require('../../../../dist/index')
 
 const getOptions = test => ({
     test,
@@ -16,7 +16,7 @@ const getOptions = test => ({
     // avoid running prettier on all the files!
     // use it only on your source code and not on dependencies!
     exclude: /node_modules/,
-    options: { ...require('../../../../prettier') }
+    options: { ...require('../../../../prettier/index') }
 })
 
 module.exports.default = rules => {
