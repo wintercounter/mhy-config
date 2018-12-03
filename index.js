@@ -1,4 +1,4 @@
-import fg from 'fast-glob'
+import glob from 'glob'
 import fs from 'fs'
 import path from 'path'
 import rg from 'resolve-global'
@@ -45,7 +45,7 @@ export const loadProcess = module => {
 }
 
 const applyEntries = (module, env, o, defaultEntries = path.join(__dirname, module, env, '**/*')) => {
-    let entries = fg.sync(defaultEntries, {
+    let entries = glob.sync(defaultEntries, {
         ignore: ['index.js'],
         nodir: true
     })
