@@ -26,7 +26,7 @@ const tsconfig = (module.exports = module.exports.default = load('typescript', {
         declaration: true,
         typeRoots: [
             path.resolve(process.cwd(), 'node_modules', '@types'),
-            path.resolve(`${gm}/@mhy/mhy`, '../../', 'node_modules', '@types')
+            path.resolve(gm, '@mhy/mhy', 'node_modules', '@types')
         ],
         baseUrl: path.resolve(process.cwd(), 'src'),
         paths: aliases.reduce(
@@ -38,10 +38,10 @@ const tsconfig = (module.exports = module.exports.default = load('typescript', {
             },
             {
                 '*': [
-                    path.resolve(`${gm}@mhy/mhy`, '../../', 'node_modules', '*'),
+                    path.resolve(gm, '@mhy/mhy', 'node_modules', '*'),
                     path.resolve(
-                        `${gm}@mhy/mhy`,
-                        '../../',
+                        gm,
+                        '@mhy/mhy',
                         'node_modules',
                         '@types',
                         '*'

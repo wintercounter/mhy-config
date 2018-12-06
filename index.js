@@ -16,7 +16,7 @@ const indexTemplatePathProject = path.resolve(process.cwd(), indexTemplatePath)
 
 let indexTemplatePathMhy
 try {
-    indexTemplatePathMhy = path.resolve(`${gm}/@mhy/mhy/${indexTemplatePath}`)
+    indexTemplatePathMhy = path.resolve(gm, `@mhy/mhy/${indexTemplatePath}`)
 } catch (e) {
     indexTemplatePathMhy = path.resolve(
         `${
