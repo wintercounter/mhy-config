@@ -38,9 +38,9 @@ const tsconfig = (module.exports = module.exports.default = load('typescript', {
             },
             {
                 '*': [
-                    path.resolve(rg('@mhy/mhy'), '../../', 'node_modules', '*'),
+                    path.resolve(`${gm}@mhy/mhy`, '../../', 'node_modules', '*'),
                     path.resolve(
-                        rg('@mhy/mhy'),
+                        `${gm}@mhy/mhy`,
                         '../../',
                         'node_modules',
                         '@types',
