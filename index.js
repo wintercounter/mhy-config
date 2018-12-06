@@ -1,7 +1,7 @@
 import glob from 'glob'
 import fs from 'fs'
 import path from 'path'
-import rg from 'resolve-global'
+import gm from 'global-modules'
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
@@ -16,7 +16,7 @@ const indexTemplatePathProject = path.resolve(process.cwd(), indexTemplatePath)
 
 let indexTemplatePathMhy
 try {
-    indexTemplatePathMhy = path.resolve(rg(`@mhy/mhy/${indexTemplatePath}`))
+    indexTemplatePathMhy = path.resolve(`${gm}/@mhy/mhy/${indexTemplatePath}`)
 } catch (e) {
     indexTemplatePathMhy = path.resolve(
         `${

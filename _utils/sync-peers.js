@@ -1,7 +1,8 @@
 const fs = require('fs')
 const path = require('path')
+const gm = require('global-modules')
 
-const mhyJSONPath = require('resolve-global')('@mhy/mhy/package.json')
+const mhyJSONPath = require(`${gm}/@mhy/mhy/package.json`)
 
 if (!fs.existsSync(mhyJSONPath)) {
     process.exit(0)

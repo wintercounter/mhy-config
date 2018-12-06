@@ -1,5 +1,5 @@
 import path from 'path'
-import rg from 'resolve-global'
+import gm from 'global-modules'
 
 import { load } from '../'
 
@@ -26,7 +26,7 @@ const tsconfig = (module.exports = module.exports.default = load('typescript', {
         declaration: true,
         typeRoots: [
             path.resolve(process.cwd(), 'node_modules', '@types'),
-            path.resolve(rg('@mhy/mhy'), '../../', 'node_modules', '@types')
+            path.resolve(`${gm}/@mhy/mhy`, '../../', 'node_modules', '@types')
         ],
         baseUrl: path.resolve(process.cwd(), 'src'),
         paths: aliases.reduce(
