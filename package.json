@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "pub": "npm publish --access=public",
-    "sync-peers": "node ./_utils/sync-peers",
+    "sync-peers": "ls /usr/local/lib/node_modules/ && node ./_utils/sync-peers",
     "install-dev": "npm run sync-peers && npm-install-peers",
     "prepare": "npm run sync-peers && mhy-build",
     "prepare:watch": "mhy-build --watch"
