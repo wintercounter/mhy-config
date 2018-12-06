@@ -6,7 +6,7 @@ const { moduleHome } = require('../../index')
 const CmdTscCLI = [
     'node',
     require.resolve('typescript/lib/tsc.js'),
-    '-w',
+    process.MHY_ENV === 'ui' ? '-w' : '',
     '--project',
     path.resolve(process.cwd(), 'tsconfig.json')
 ]
