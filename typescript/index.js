@@ -26,7 +26,8 @@ const tsconfig = (module.exports = module.exports.default = load('typescript', {
         declaration: true,
         typeRoots: [
             path.resolve(process.cwd(), 'node_modules', '@types'),
-            path.resolve(gm, '@mhy/mhy', 'node_modules', '@types')
+            path.resolve(gm, '@mhy/mhy', 'node_modules', '@types'),
+            path.resolve('/home/node/.npm-global/lib/node_modules/@mhy/mhy/node_modules/@types')
         ],
         baseUrl: path.resolve(process.cwd(), 'src'),
         paths: aliases.reduce(
@@ -54,7 +55,8 @@ const tsconfig = (module.exports = module.exports.default = load('typescript', {
 	"node_modules",
 	"!node_modules/@types"
 	],*/
-    include: [path.resolve(process.cwd(), 'src/**/*')]
+    include: [path.resolve(process.cwd(), 'src/**/*')],
+    files: [require.resolve('./mhy.d.ts')]
 }))
 
 // Generate fresh tsconfig.json on each run
