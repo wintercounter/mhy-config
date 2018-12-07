@@ -1,5 +1,6 @@
 import path from 'path'
 import gm from 'global-modules'
+const fs = require('fs')
 
 import { load } from '../'
 
@@ -10,6 +11,27 @@ try {
     aliases = {}
 }
 aliases = Object.entries(aliases)
+
+const getExcludedTypes = () => {
+    const pathCwd = path.resolve(process.cwd(), 'node_modules', '@types')
+
+    if (!fs.existsSync(pathCwd)) {
+        return []
+    }
+
+    const isDirectory = source => fs.lstatSync(path.join(pathCwd, source)).isDirectory()
+    const getDirectories = source => fs.readdirSync(source).filter(isDirectory)
+    const excluded = []
+
+    getDirectories(pathCwd).forEach(dir => {
+        const p = path.resolve(gm, '@mhy/mhy', 'node_modules', '@types', dir)
+        const pFallback = path.resolve('/home/node/.npm-global/lib/node_modules/@mhy/mhy/node_modules/@types', dir)
+        excluded.push(p)
+        excluded.push(pFallback)
+    })
+
+    return excluded
+}
 
 const tsconfig = (module.exports = module.exports.default = load('typescript', {
     compilerOptions: {
@@ -51,10 +73,9 @@ const tsconfig = (module.exports = module.exports.default = load('typescript', {
             }
         )
     },
-    /*"exclude": [
-	"node_modules",
-	"!node_modules/@types"
-	],*/
+    exclude: [
+        ...getExcludedTypes()
+    ],
     include: [path.resolve(process.cwd(), 'src/**/*')],
     files: [require.resolve('../../typescript/mhy.d.ts')]
 }))
