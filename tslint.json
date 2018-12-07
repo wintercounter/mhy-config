@@ -16,6 +16,7 @@
 		"arrow-parens": [true, "ban-single-arg-parens"],
 		"object-literal-sort-keys": false,
 		"no-boolean-literal-compare": false,
+		"import-name": false,
 		"trailing-comma": [
 			true,
 			{
