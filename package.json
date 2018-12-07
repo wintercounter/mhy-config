@@ -1,6 +1,6 @@
 {
   "name": "@mhy/config",
-  "version": "0.19.2",
+  "version": "0.19.4",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -26,7 +26,8 @@
     "copy-dir": "^0.4.0",
     "glob": "^7.1.3",
     "global-modules": "^1.0.0",
-    "resolve-global": "^0.1.0"
+    "resolve-global": "^0.1.0",
+    "rimraf": "^2.6.2"
   },
   "devDependencies": {
     "@mhy/build": "0.0.8",
