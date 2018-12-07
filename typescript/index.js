@@ -56,7 +56,7 @@ const tsconfig = (module.exports = module.exports.default = load('typescript', {
 	"!node_modules/@types"
 	],*/
     include: [path.resolve(process.cwd(), 'src/**/*')],
-    files: [require.resolve('./mhy.d.ts')]
+    files: [require.resolve('../../typescript/mhy.d.ts')]
 }))
 
 // Generate fresh tsconfig.json on each run
