@@ -18,23 +18,7 @@ try {
 }
 aliases = Object.entries(aliases)
 
-// Copy types
-if (fs.existsSync(_3)) {
-    const isDirectory = source => fs.lstatSync(path.join(_3, source)).isDirectory()
-    const getDirectories = source => fs.readdirSync(source).filter(isDirectory)
-
-    getDirectories(_3).forEach(dir => {
-        // If dir not exists in mhy
-        if (!fs.existsSync(path.resolve(globalTypesPath, dir))) {
-            copydir.sync(
-                path.resolve(_3, dir),
-                path.resolve(globalTypesPath, dir)
-            )
-        }
-    })
-}
-
-const tsconfig = (module.exports = module.exports.default = load('typescript', {
+const tsconfig = load('typescript', {
     compilerOptions: {
         module: 'esNext',
         target: 'esnext',
@@ -47,9 +31,6 @@ const tsconfig = (module.exports = module.exports.default = load('typescript', {
         esModuleInterop: true,
         noImplicitAny: false,
         declaration: true,
-        typeRoots: [
-            globalTypesPath
-        ],
         baseUrl: path.resolve(process.cwd(), 'src'),
         paths: aliases.reduce(
             function(acc, [k]) {
@@ -67,7 +48,37 @@ const tsconfig = (module.exports = module.exports.default = load('typescript', {
     },
     include: [path.resolve(process.cwd(), 'src/**/*')],
     files: [require.resolve('../../typescript/mhy.d.ts')]
-}))
+})
+
+// Setup @types
+// Local exists
+if (fs.existsSync(_3)) {
+    const isDirectory = source => fs.lstatSync(path.join(globalTypesPath, source)).isDirectory()
+    const getDirectories = source => fs.readdirSync(source).filter(isDirectory)
+
+    getDirectories(globalTypesPath).forEach(dir => {
+        // If dir not exists local
+        const dirPath = path.resolve(_3, dir)
+        if (!fs.existsSync(dirPath)) {
+            fs.mkdirSync(dirPath)
+            copydir.sync(
+                path.resolve(globalTypesPath, dir),
+                path.resolve(_3, dir)
+            )
+        }
+    })
+    tsconfig.compilerOptions.typeRoots = [
+        _3
+    ]
+}
+// Use mhy's if not types in local node_modules/@types yet
+else {
+    tsconfig.compilerOptions.typeRoots = [
+        globalTypesPath
+    ]
+}
+
+module.exports = module.exports.default = tsconfig
 
 // Generate fresh tsconfig.json on each run
 require('../_utils/tsconfig')(process.cwd(), tsconfig)
