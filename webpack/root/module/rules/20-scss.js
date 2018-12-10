@@ -1,7 +1,7 @@
 const path = require('path')
 const { moduleHome } = require('../../../../')
 
-const getUse = (isModules = true) => [
+const getUse = (isModules = 'global') => [
     {
         loader: require.resolve('style-loader')
     },
@@ -12,7 +12,6 @@ const getUse = (isModules = true) => [
             localIdentName: '[local]__[hash:base64:5]',
             sourceMap: true,
             modules: isModules,
-            minimize: true,
             camelCase: true
         }
     },

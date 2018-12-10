@@ -1,4 +1,5 @@
-const loaders = ['css-loader', 'sass-loader', 'postcss-loader']
+const loader = ['css-loader']
+const loaders = ['sass-loader', 'postcss-loader']
 
 module.exports.default = rules => {
     rules.forEach(({ use }) => {
@@ -7,6 +8,11 @@ module.exports.default = rules => {
                 loaders.forEach(l => {
                     if (u.loader.includes(l)) {
                         u.options.sourceMaps = false
+                    }
+                })
+                loader.forEach(l => {
+                    if (u.loader.includes(l)) {
+                        u.options.sourceMap = false
                     }
                 })
             })
