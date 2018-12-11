@@ -1,7 +1,7 @@
 const path = require('path')
 const { moduleHome } = require('../../../../')
 
-const getUse = (isModules = 'global') => [
+const getUse = (isModules = true) => [
     {
         loader: require.resolve('style-loader')
     },
